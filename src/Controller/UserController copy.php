@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,21 +17,23 @@ class UserController extends AbstractController
      *  $Route(/user)  
      */
 
+    // Méthode qui consiste ici à créer un formulaire 
+    // directement à l'intérieur de notre controller
+    // peu recommandée car le code généré n'est pas mutualisable
+
     function createUserForm(Request $request)
     {
         // instance de l'entité
         $user = new User();
-        // maintenant qu'on a crée une classe UserType, on peut commenter les lignes qui suivent
-        //$form = $this->createFormBuilder($user)
-        //    ->add('name', TextType::class)
-        //    ->add('email', EmailType::class)
-        //    ->add('save', SubmitType::class)
-        //    ->getForm();
-
-
-        // je passe juste à createForm la référence à la classe en charge de la création de formulaire
-        // et la référence à mon entité
-        $form = $this->createForm(UserType::class, $user);
+        // méthode qui appartient à la classe AbstractController
+        // à laquelle on passe une instance de notre entité
+        $form = $this->createFormBuilder($user)
+            // et on ajoute des champs via la méthode add
+            ->add('name', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('save', SubmitType::class)
+            // et créer le formulaire grâce à la méthode getForm
+            ->getForm();
 
         // on demande à l'objet form d'inspecter l'objet request
         $form->handleRequest($request);
