@@ -6,7 +6,7 @@ namespace App\Form;
 // UserType aura donc la responsabilité de créer le formulaire user
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Test\FormBuilderInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
